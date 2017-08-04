@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.belongs_to :users
       t.string :image
-      t.integer :tag_id
+      t.string :tag_name
       t.integer :bookmark_count
       t.integer :comment_count
 

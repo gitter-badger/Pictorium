@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label "アップロードする画像ファイルを選択して下さい" %>
+    <%= f.file_field :image %>
+  </div>
+  
+  <div class="actions">
+    <%= f.label "タグを設定して下さい" %>
+    <%= f.text_field :tag_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "画像をアップロードする" %>
   </div>
 <% end %>

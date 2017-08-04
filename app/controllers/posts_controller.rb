@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @tag = @post.tag.split ','
   end
 
   # GET /posts/new
@@ -45,6 +46,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:user_id, :image, :tag_id, :bookmark_count, :comment_count)
     end
 end
