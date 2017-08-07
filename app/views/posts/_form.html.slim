@@ -9,10 +9,8 @@
           li
             = message
   .actions
-    = f.label "アップロードする画像ファイルを選択して下さい"
+    = f.label :image
     = f.file_field :image
-  .actions
-    = f.label "タグを設定して下さい"
-    = f.text_field :tag_name
+
   .actions
     = f.submit "画像をアップロードする"

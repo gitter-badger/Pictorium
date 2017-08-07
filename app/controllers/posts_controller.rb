@@ -18,13 +18,20 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-    @post.save ? redurect_to @post, notice: 'Post was successfully created.' : render :new
+    if @post.save
+      redirect_to @post, notice:  'Post was successfully created.'
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /posts/1
   def update
-    @post_update(post_params) ? redirect_to @post, notice: 'Post was successfully updated.'
-                              : render :edit
+    if @post.update post_params
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   # DELETE /posts/1
@@ -41,6 +48,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count)
+      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count, tag_attributes: [:tag_name])
     end
 end
