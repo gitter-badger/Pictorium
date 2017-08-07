@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
   def index
@@ -8,16 +8,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    @tag = @post.tag.split ','
   end
 
   # GET /posts/new
   def new
     @post = Post.new
-  end
-
-  # GET /posts/1/edit
-  def edit
   end
 
   # POST /posts
@@ -46,6 +41,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :image, :tag_id, :bookmark_count, :comment_count)
+      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count)
     end
 end
