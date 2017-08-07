@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :get_tag_list, only: [:create, :update]
+  before_action :user_authenticate!, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /posts
   def index
@@ -15,10 +17,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @edit_tag_list = @post.all_tags.pluck(:tag_name).join(',')
+  end
+  
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build post_params
     if @post.save
+      @post.save_tags tag_list
       redirect_to @post, notice:  'Post was successfully created.'
     else
       render :new
@@ -28,6 +35,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update post_params
+      @post.save_tags tag_list
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -48,6 +56,10 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count, tag_attributes: [:tag_name])
+      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count)
+    end
+
+    def get_tag_list
+      tag_list = params[:tag_list].split ','
     end
 end

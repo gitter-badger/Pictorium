@@ -8,9 +8,12 @@
         - post.errors.full_messages.each do |message|
           li
             = message
-  .actions
+  .field
     = f.label :image
     = f.file_field :image
-
+    = hidden_field_tag :tag_hidden, @edit_tag_list
+  .image-tags-field
+    ul id="image-tags"
+    
   .actions
     = f.submit "画像をアップロードする"

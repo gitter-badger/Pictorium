@@ -57,3 +57,6 @@ gem 'slim-rails'
 # image uploader
 gem 'rmagick'
 gem 'carrierwave'
+
+# image tagging
+gem 'jquery-ui-rails'
