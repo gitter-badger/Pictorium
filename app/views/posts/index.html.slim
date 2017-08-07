@@ -1,0 +1,8 @@
+p#notice
+  = notice
+- @posts.each do |post|
+  span
+    = post.title
+    = image_tag post.image
+    = post.updated_at
+br
