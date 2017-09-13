@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :all_tags, through: tags
+  has_many :all_tags, through: :tags
   has_many :tags, dependent: :destroy
   has_many :bookmarks
   has_many :comments
