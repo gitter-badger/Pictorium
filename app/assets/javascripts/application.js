@@ -10,21 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
 //= require turbolinks
-//= require jquery_ui
-//= require tag-it
 //= require_tree .
-
-$(document).on 'turbolinks:load', ->
-  $('#image-tags').tagit
-    fieldName: 'tag_list'
-    singleField: true
-  $('#image-tags').tagit()
-  tag_string = $("#tag_hidden").val()
-  try
-    tag_list = tag_string.split(',')
-    for tag in tag_list
-      $('#image-tags').tagit 'createTag', tag
-  catch error
