@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :get_tag_list, only: [:create, :update]
-  before_action :user_authenticate!, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /posts
   def index
+    redirect_to user_session_path unless user_signed_in?
     @posts = Post.all
   end
 

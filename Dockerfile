@@ -1,7 +1,0 @@
-FROM ruby:2.3.4
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs cron logrotate vim
-RUN mkdir /myapp
-WORKDIR /myapp
-ADD Gemfile /myapp/Gemfile
-ADD Gemfile.lock /myapp
-ADD . /myapp

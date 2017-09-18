@@ -34,6 +34,7 @@ gem 'turbolinks', '~> 5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'letter_opener'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
@@ -49,7 +50,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
 gem 'slim-rails'
 
 # image uploader
@@ -58,3 +58,14 @@ gem 'carrierwave'
 
 # react
 gem 'webpacker'
+
+# env
+gem 'dotenv-rails'
+
+# devise
+gem 'slim-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
