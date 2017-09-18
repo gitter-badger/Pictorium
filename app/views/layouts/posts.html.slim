@@ -18,7 +18,7 @@ html
           = link_to 'Pictorium', root_path, class: 'navbar-brand'
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav
-            li = link_to '新規投稿', new_posts_path
+            li = link_to '新規投稿', new_post_path
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               li.dropdown

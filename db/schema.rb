@@ -20,32 +20,32 @@ ActiveRecord::Schema.define(version: 20170807063719) do
   end
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "users_id"
-    t.integer  "posts_id"
+    t.integer  "user_id"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["posts_id"], name: "index_bookmarks_on_posts_id", using: :btree
-    t.index ["users_id"], name: "index_bookmarks_on_users_id", using: :btree
+    t.index ["post_id"], name: "index_bookmarks_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.integer  "post_id"
     t.string   "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
-    t.index ["users_id"], name: "index_comments_on_users_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.string   "image"
     t.integer  "bookmark_count"
     t.integer  "comment_count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["users_id"], name: "index_posts_on_users_id", using: :btree
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -58,14 +58,14 @@ ActiveRecord::Schema.define(version: 20170807063719) do
   end
 
   create_table "userinfos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.string   "user_name"
     t.string   "profile"
     t.integer  "posted_count"
     t.integer  "bookmark_count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["users_id"], name: "index_userinfos_on_users_id", using: :btree
+    t.index ["user_id"], name: "index_userinfos_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

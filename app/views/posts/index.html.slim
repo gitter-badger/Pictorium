@@ -2,9 +2,9 @@ p#notice
   = notice
 h1
   | 投稿一覧
-- @posts.each do |post|
-  span
-    = post.title
-    = image_tag post.image
-    = post.updated_at
+tbody
+  - @posts.each do |post|
+    tr
+      td
+        = link_to image_tag(show_image_post_path(post), width: 500, height: 500), post
 br

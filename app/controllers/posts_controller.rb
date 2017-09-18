@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy]
-  before_action :get_tag_list, only: [:create, :update]
+  before_action :set_post, only: [:show, :update, :destroy, :show_image]
+  # before_action :get_tag_list, only: [:create, :update]
   before_filter :authenticate_user!
 
   # GET /posts
@@ -11,6 +11,17 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+  end
+
+  # show image
+  def show_image
+    send_data @post.image, disposition: 'inline'
+  end
+  
+  # show resized image 
+  def show_resized_image
+    image = Magick::Image.from_blob(@post.image).first
+    send_data image.resize_to_fit(400, 250).to_blob, disposition: 'inline'
   end
 
   # GET /posts/new
@@ -26,7 +37,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build post_params
     if @post.save
-      @post.save_tags tag_list
+      # @post.save_tags tag_list
       redirect_to @post, notice:  'Post was successfully created.'
     else
       render :new
