@@ -6,5 +6,5 @@ tbody
   - @posts.each do |post|
     tr
       td
-        = link_to image_tag(show_image_post_path(post), width: 500, height: 500), post
+        = link_to image_tag(post.image_url(:thumb)), post
 br

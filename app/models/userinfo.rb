@@ -1,6 +1,6 @@
 class Userinfo < ApplicationRecord
-  belongs_to :user
-  validate :user_name, presence: true
-  validate :user_name, uniqueness: true
-  validate :profile, presence: true
+  belongs_to :user, inverse_of: :userinfo
+  validates :user_name, presence: true
+  validates :user_name, uniqueness: true
+  validates :profile, presence: true
 end

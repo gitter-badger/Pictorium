@@ -1,6 +1,6 @@
 p#notice
   = notice
 div
-  = image_tag show_image_post_path(@post)
+  = image_tag(@post.image_url(:thumb))
   
 = link_to 'Back', root_path

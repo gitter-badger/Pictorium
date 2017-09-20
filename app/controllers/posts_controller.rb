@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy, :show_image]
+  before_action :set_post, only: [:show, :update, :destroy]
   # before_action :get_tag_list, only: [:create, :update]
   before_filter :authenticate_user!
 
@@ -13,17 +13,6 @@ class PostsController < ApplicationController
   def show
   end
 
-  # show image
-  def show_image
-    send_data @post.image, disposition: 'inline'
-  end
-  
-  # show resized image 
-  def show_resized_image
-    image = Magick::Image.from_blob(@post.image).first
-    send_data image.resize_to_fit(400, 250).to_blob, disposition: 'inline'
-  end
-
   # GET /posts/new
   def new
     @post = Post.new
@@ -35,6 +24,7 @@ class PostsController < ApplicationController
   
   # POST /posts
   def create
+    begin
     @post = current_user.posts.build post_params
     if @post.save
       # @post.save_tags tag_list
@@ -42,6 +32,10 @@ class PostsController < ApplicationController
     else
       render :new
     end
+    rescue
+      flash[:message] = "fuck"
+    end
+  
   end
 
   # PATCH/PUT /posts/1
@@ -68,7 +62,11 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count)
+      begin
+        params.require(:post).permit(:user_id, :image, :bookmark_count, :comment_count)
+      rescue 
+        flash[:message] = "アップロードする画像を選択して下さい"
+      end
     end
 
     def get_tag_list
