@@ -1,0 +1,9 @@
+= form_for @userpage do |f|
+  - if @userpage.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@userpage.errors.count, "error")} prohibited this userpage from being saved:"
+      ul
+        - @userpage.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

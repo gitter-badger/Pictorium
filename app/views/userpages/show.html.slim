@@ -1,0 +1,11 @@
+p#notice = notice
+
+p ユーザー名
+= current_user.userinfo.user_name
+p 自己紹介
+= current_user.userinfo.profile
+
+- @user.posts.each do |post|
+  = image_tag post.image, show_post_path(post)
+
+= link_to 'Back', userpages_path

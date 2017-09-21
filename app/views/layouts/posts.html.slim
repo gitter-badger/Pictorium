@@ -21,13 +21,8 @@ html
             li = link_to '新規投稿', new_post_path
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
-              li.dropdown
-                a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-                  = current_user.email
-                  span.caret
-                ul.dropdown-menu
-                  li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+              = link_to current_user.email, userpage_path(current_user)
             - else
-              li = link_to 'ログイン', new_user_session_path
+              = link_to 'ログイン', new_user_session_path
     .container
       = yield

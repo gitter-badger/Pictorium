@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :posts
   has_one :userinfo
+
+  accepts_nested_attributes_for :userinfo
 end
