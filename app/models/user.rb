@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :bookmarks
   has_many :posts
-  has_one :userinfo
+  has_one :userinfo, inverse_of: :user
 
   accepts_nested_attributes_for :userinfo
 end

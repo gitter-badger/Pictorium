@@ -21,7 +21,8 @@ html
             li = link_to '新規投稿', new_post_path
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
-              = link_to current_user.email, userpage_path(current_user)
+              = link_to "ログアウト", destroy_user_session_path
+              = link_to "設定", userpage_path(current_user)
             - else
               = link_to 'ログイン', new_user_session_path
     .container
