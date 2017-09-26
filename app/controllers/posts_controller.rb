@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    redirect_to user_session_path unless user_signed_in?
     @posts = Post.all
   end
 
