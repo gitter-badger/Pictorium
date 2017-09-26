@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |params|
       params.permit(:email, :password, :password_confirmation, :current_password,  
-                    userinfo_attributes: %i[id name profile posted_count bookmark_count])
+                    userinfo_attributes: [:user_id :name :profile :posted_count :bookmark_count])
     end
   end
 
@@ -50,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit(:email, :password, :password_confirmation, :current_password,  
-                    userinfo_attributes: %i[id name profile posted_count bookmark_count]
+                    userinfo_attributes: [:user_id :name :profile :posted_count :bookmark_count]
     end
   end
 
