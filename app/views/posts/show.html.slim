@@ -2,5 +2,15 @@ p#notice
   = notice
 div
   = image_tag(@post.image_url(:thumb))
-  
+
+- @comments.each do |c|
+  = c.comment
+
+= form_for @post.comments.new, url: { controller: :posts, action: :create_comment } do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :post_id, value: @post.id
+  = f.label :comment
+  = f.text_area :comment
+  = f.submit "コメントする"
+
 = link_to 'Back', root_path
