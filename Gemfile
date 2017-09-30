@@ -69,3 +69,7 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+# jquery
+gem 'jquery-rails'
+gem 'jquery-ui-rails'

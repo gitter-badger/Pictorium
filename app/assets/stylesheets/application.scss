@@ -2,6 +2,8 @@
  *= require_self
  *= require_tree .
  */
+@import "jquery.tagit";
+@import "tagit.ui-zendesk";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "devise_bootstrap_views";

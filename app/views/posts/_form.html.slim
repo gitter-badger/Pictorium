@@ -10,17 +10,14 @@
             = message
   .field
     = f.label :title
-    = f.text_area :title
-  / .field
-  /   = f.label :tag
-  /   = f.text_area :tag
-  .field
+    = f.text_field :title
+
+    .article-tags-field
+      = f.label "category"
+      ul#article-tags
+    
     = f.label :image
     = f.file_field :image
-
-  / .image-tags-field
-  /   ul id="image-tags"
-  /   = hidden_field_tag :tag_hidden, @edit_tag_list
 
   .actions
     = f.submit "画像をアップロードする"
