@@ -57,7 +57,8 @@ gem 'rmagick'
 gem 'carrierwave'
 
 # react
-gem 'webpacker'
+# Memo: On High Sierra, app server should be timed out. so, must add monkeypatch on running? method
+gem 'webpacker', github: 'rails/webpacker'
 
 # env
 gem 'dotenv-rails'

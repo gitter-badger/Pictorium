@@ -20,10 +20,8 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function(){
-  console.log("testllllll");
-
   $('#article-tags').tagit({
-    fieldName: 'category-list',
+    fieldName: 'tag_list',
     singleField: true
   });
 });

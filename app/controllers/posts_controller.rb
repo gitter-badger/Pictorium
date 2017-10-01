@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy, :create_comment]
-  before_filter :authenticate_user!
+  before_action :set_post, only: [:edit, :show, :update, :destroy, :create_comment]
+  before_action :authenticate_user!
 
   # GET /posts
   def index
@@ -18,23 +18,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # @edit_tag_list = @post.all_tags.pluck(:tag_name).join(',')
+    if current_user.id == @post.user_id
+      @edit_tag_list = @post.tags.pluck(:name).join(',')
+    else
+      redirect_to root_path, notice: 'This operation is not allowed.'
+    end
   end
   
   # POST /posts
   def create
-    begin
-      @post = current_user.posts.build post_params
-      if @post.save
-        # @post.save_tags tag_list
-        redirect_to root_path, notice:  'Post was successfully created.'
-      else
-        render :new
-      end
-    rescue
-      flash[:message] = "fuck"
+    @post = current_user.posts.build post_params
+    tag_list = params[:tag_list].split(',')
+
+    if @post.save
+      @post.save_tags tag_list
+      redirect_to root_path, notice: 'Post was successfully created.'
+    else
+      render :new
     end
-  
   end
 
   # POST /comment
@@ -50,8 +51,10 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    tag_list = params[:tag_list].split(',')
+
     if @post.update post_params
-      # @post.save_tags tag_list
+      @post.save_tags tag_list
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
