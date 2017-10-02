@@ -4,6 +4,9 @@ cache:
   directories:
     - node_modules
 
+notifications:
+  email: false
+
 rvm:
   - 2.4.0
 
