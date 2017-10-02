@@ -1,0 +1,29 @@
+language: ruby
+cache:
+  bundle: true
+  directories:
+    - node_modules
+
+rvm:
+  - 2.4.0
+
+env:
+  global:
+    - RAILS_ENV=test
+
+services:
+  - mysql
+
+install:
+  - nvm install
+  - npm install -g yarn
+  - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
+  - yarn install
+
+before_script:
+  # - bundle exec rails assets:precompile
+
+script:
+  # - bundle exec rubocop
+  - bundle exec rake db:schema:load
+  - bundle exec rspec
