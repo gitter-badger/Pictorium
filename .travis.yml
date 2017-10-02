@@ -14,14 +14,11 @@ env:
   global:
     - RAILS_ENV=test
 
-test:
-  adapter: mysql2
-  database: picrotium_test
-  username: root
-  encoding: utf8
-
 services:
   - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE picrotium_test;'
 
 install:
   - nvm install
