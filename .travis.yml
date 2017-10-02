@@ -1,6 +1,6 @@
 language: ruby
 cache:
-  bundle: true
+  bundler: true
   directories:
     - node_modules
 
